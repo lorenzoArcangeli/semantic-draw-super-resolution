@@ -785,7 +785,8 @@ class SemanticDrawPipeline(nn.Module):
         boostrap_mix_steps: Optional[float] = None,
         bootstrap_leak_sensitivity: Optional[float] = None,
         preprocess_mask_cover_alpha: Optional[float] = None,
-    ) -> Image.Image:
+        output_type: str = 'pil',
+    ) -> Union[Image.Image, torch.Tensor]:
         r"""Arbitrary-size image generation from multiple pairs of (regional)
         text prompt-mask pairs.
 
@@ -1096,6 +1097,9 @@ class SemanticDrawPipeline(nn.Module):
                 # Noise is added after mixing.
                 if i < len(self.timesteps) - 1:
                     latent = self.scheduler_add_noise(latent, None, i + 1)
+
+        if output_type == 'latent':
+            return latent
 
         # Return PIL Image.
         image = self.decode_latents(latent.to(dtype=self.dtype))[0]
