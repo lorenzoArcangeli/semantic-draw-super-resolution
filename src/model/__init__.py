@@ -19,8 +19,9 @@
 # SOFTWARE.
 
 from .pipeline_semantic_draw import SemanticDrawPipeline
+from .pipeline_semantic_draw_freq_split import SemanticDrawFreqSplitPipeline
+
 from .pipeline_semantic_draw_sdxl import SemanticDrawSDXLPipeline
-from .pipeline_semantic_draw_3 import SemanticDraw3Pipeline
 from .semantic_draw import SemanticDraw
 from .semantic_draw_sdxl import SemanticDrawSDXL
 from .semantic_draw_3 import SemanticDraw3
